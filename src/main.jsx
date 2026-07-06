@@ -4,6 +4,7 @@ import './index.css'
 import Home from './Home.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import Layout from './Layout.jsx'
+import axios from 'axios'
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: async ()=>{
+          const res= await axios.get("/data.json")
+          return res.data;
+        }
       },
 
     ]
