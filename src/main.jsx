@@ -5,6 +5,8 @@ import Home from './Home.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import Layout from './Layout.jsx'
 import axios from 'axios'
+import ProductPage from './Components/ProductPage.jsx'
+
 
 
 const router = createBrowserRouter([
@@ -15,11 +17,16 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-        loader: async ()=>{
-          const res= await axios.get("/data.json")
+        loader: async () => {
+          const res = await axios.get("/data.json")
           return res.data;
-        }
+        },
+
       },
+      {
+        path: "/idea/:id",
+        element: <ProductPage></ProductPage>
+      }
 
     ]
   }

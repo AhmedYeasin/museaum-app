@@ -1,13 +1,15 @@
+import { Link } from "react-router"
+
 export default function Products({ products }) {
     console.log(products)
     return <div className="font-roboto">
         <h2>Our Products</h2>
-        <div className="flex flex-wrap gap-4 justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 flex-wrap gap-4 ">
             {products.map(product => {
                 return (
-                    <div key={product.id} className="card bg-base-white w-96 shadow-sm outline outline-1 outline-primary-content flex">
-                        <figure>
-                            <img
+                    <div key={product.id} className="card shadow-sm hover:shadow-lg transition-shadow duration-400 outline outline-1 outline-primary-content flex">
+                        <figure className="h-80">
+                            <img className="size-full object-cover h-full w-full"
                                 src={product.image}
                                 alt={product.name} />
                         </figure>
@@ -15,7 +17,7 @@ export default function Products({ products }) {
                             <h2 className="card-title">{product.name}</h2>
                             <p>{product.short_details}</p>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-accent">Buy Now</button>
+                                <Link to={`/idea/${product.id}`} className="btn btn-block btn-accent hover:bg-accent-focus">Buy Now</Link>
                             </div>
                         </div>
                     </div>
