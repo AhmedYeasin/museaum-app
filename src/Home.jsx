@@ -3,14 +3,15 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import Hero from './Components/Hero.jsx'
 
 function Home() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <h2 class="">Hello</h2>
-    </>
+    <main className="App px-6 space-y-8 my-8">
+      <Hero />
+    </main>
   )
 }
 
