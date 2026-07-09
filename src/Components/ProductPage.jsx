@@ -1,10 +1,21 @@
 
 
-import { Star } from "lucide-react";
+import { Eye, Star } from "lucide-react";
 import { useLoaderData } from "react-router";
+import { addWantedIdea } from "../localstorage.js";
+import toast from "react-hot-toast";
 
 export default function ProductPage() {
     const p = useLoaderData()
+
+    const handleWantThis = (id)=>{
+        addWantedIdea(id)
+        toast.success("Added to your wanted list!",{
+
+        })
+    }
+
+
     return <main className="px-6 my-10">
         <article className=" mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 rounded-2xl bg-base-100 border border-base-300 shadow-sm p-5 md:p-8">
             <figure className="rounded-xl overflow-hidden bg-base-200 h-85 md:h-140">
@@ -68,7 +79,7 @@ export default function ProductPage() {
                     <button
                         to="/"
                         className="btn btn-accent"
-                        // onClick={() => handleWantThis(p.id)}
+                        onClick={() => handleWantThis(p.id)}
                     >
                         I Actually Want This
                     </button>

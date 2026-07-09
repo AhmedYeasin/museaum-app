@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import Layout from './Layout.jsx'
 import axios from 'axios'
 import ProductPage from './Components/ProductPage.jsx'
+import { Toaster } from 'react-hot-toast'
 
 
 
@@ -26,9 +27,9 @@ const router = createBrowserRouter([
       {
         path: "/idea/:id",
         element: <ProductPage></ProductPage>,
-        loader: async ({params})=>{
+        loader: async ({ params }) => {
           const res = await axios.get("/data.json");
-          const idea = res.data.find(product => product.id === params.id)
+          const idea = res.data.find(product => product.id === parseInt(params.id))
           return idea;
         }
       }
@@ -40,5 +41,6 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <Toaster />
   </StrictMode>,
 )
