@@ -7,6 +7,7 @@ import Layout from './Layout.jsx'
 import axios from 'axios'
 import ProductPage from './Components/ProductPage.jsx'
 import { Toaster } from 'react-hot-toast'
+import Dashboard from './Components/Dashboard.jsx'
 
 
 
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
           const idea = res.data.find(product => product.id === parseInt(params.id))
           return idea;
         }
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        loader: async () => {
+          const res = await axios.get("/data.json")
+          return res.data;
+        },
       }
 
     ]
