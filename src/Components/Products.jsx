@@ -3,7 +3,7 @@ import { Link } from "react-router"
 export default function Products({ products }) {
     console.log(products)
     return <div className="font-roboto">
-        <h2>Our Products</h2>
+        <h2 className="text-3xl font-semibold text-center m-8 bg-secondary text-white p-4">Our Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 flex-wrap gap-4 ">
             {products.map(product => {
                 return (

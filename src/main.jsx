@@ -25,7 +25,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/idea/:id",
-        element: <ProductPage></ProductPage>
+        element: <ProductPage></ProductPage>,
+        loader: async ({params})=>{
+          const res = await axios.get("/data.json");
+          const idea = res.data.find(product => product.id === params.id)
+          return idea;
+        }
       }
 
     ]
