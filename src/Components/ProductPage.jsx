@@ -2,17 +2,42 @@
 
 import { Eye, Star } from "lucide-react";
 import { useLoaderData } from "react-router";
-import { addWantedIdea } from "../localstorage.js";
+import { addUnwantedIdea, addWantedIdea, isUnwantedIdea, isWantedIdea } from "../localstorage.js";
 import toast from "react-hot-toast";
 
 export default function ProductPage() {
     const p = useLoaderData()
 
-    const handleWantThis = (id)=>{
+    const handleWantThis = (id) => {
+        if (isWantedIdea(id)) {
+            toast.error("Already in your wanted list!")
+            return;
+        }
+        if (isUnwantedIdea(id)) {
+            toast.error("This product is inunwanted list!")
+            return;
+        }
         addWantedIdea(id)
-        toast.success("Added to your wanted list!",{
+        toast.success("Added to your wanted list!", {
 
         })
+
+    }
+    
+    const handleDontWantThis = (id) => {
+        if (isWantedIdea(id)) {
+            toast.error("Already in your wanted list!")
+            return;
+        }
+        if (isUnwantedIdea(id)) {
+            toast.error("This product is in unwanted list!")
+            return;
+        }
+        addUnwantedIdea(id)
+        toast.success("Added to your unwanted list!", {
+
+        })
+
     }
 
 
@@ -86,7 +111,7 @@ export default function ProductPage() {
                     <button
                         to="/"
                         className="btn btn-accent btn-outline"
-                        // onClick={() => handleDontWantThis(p.id)}
+                    onClick={() => handleDontWantThis(p.id)}
                     >
                         I Don’t Want This
                     </button>
