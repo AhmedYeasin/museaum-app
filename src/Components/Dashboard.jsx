@@ -20,21 +20,21 @@ export default function Dashboard() {
         <div className="px-6 my-10 space-y-8">
             <h1 className="italic font-news text-3xl bg-white p-4 font-bold">Dashboard</h1>
             <div className="flex gap-8">
-                <div className="stat rounded-box">
+                <div className="stat rounded-box border shadow-xl">
                     <div className="stat-figure">
                         <Heart />
                     </div>
                     <div className="stat-title">Wanted Items</div>
-                    <div className="stat-value">{wantedCount}</div>
+                    <p className="stat-value">{wantedCount}</p>
                 </div>
-                <div className="stat rounded-box">
+                <div className="stat rounded-box border shadow-xl">
                     <div className="stat-figure">
                         <ThumbsDown />
                     </div>
                     <div className="stat-title">Unwanted Items</div>
                     <div className="stat-value">{wantedCount}</div>
                 </div>
-                <div className="stat rounded-box">
+                <div className="stat rounded-box border shadow-xl">
                     <div className="stat-figure">
                         <BoxIcon />
                     </div>
@@ -48,9 +48,11 @@ export default function Dashboard() {
 
                 <ResponsiveContainer height={300}>
                     <BarChart data={barData}>
-                        <XAxis dataKey={"name"}/>
-                        <YAxis tick={{fontSize: 12}}/>
-                        <Bar dataKey={"views"} fill="maroon"/>
+                        <XAxis dataKey={"name"} />
+                        <YAxis tick={{ fontSize: 12 }}
+                        tickFormatter={(v)=> new Intl.NumberFormat("en-us", {notation: "compact"}).format(v)} />
+                        <Bar dataKey={"views"} fill="maroon"
+                            radius={[4, 4, 0, 0]} />
                     </BarChart>
                 </ResponsiveContainer>
             </div>
